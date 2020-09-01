@@ -13,6 +13,11 @@ from todo.permissions import GetAccessCompany
 
 
 class Registration(CreateModelMixin, GenericViewSet):
+    """
+    The ViewSet class implements the registration of a new or existing user
+    with a specific company. Returns 200 OK if the operation is successful.
+    """
+
     queryset = User.objects.all()
     serializer_class = RegistrationSerializer
 
@@ -54,6 +59,11 @@ class Registration(CreateModelMixin, GenericViewSet):
 
 
 class Login(CreateModelMixin, DestroyModelMixin, GenericViewSet):
+    """
+    The ViewSet class implements user authorization in a specific company
+    to access its ToDo list. Returns 200 OK if the operation is successful.
+    """
+
     queryset = User.objects.all()
     serializer_class = LoginSerializer
 
@@ -90,6 +100,11 @@ class Login(CreateModelMixin, DestroyModelMixin, GenericViewSet):
 
 
 class ToDoViewSet(ModelViewSet):
+    """
+    The ModelViewSet class implements the creation of a new ToDo object
+    for a specific company.
+    """
+
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     permission_classes = (IsAuthenticated, GetAccessCompany)
